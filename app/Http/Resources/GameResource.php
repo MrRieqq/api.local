@@ -12,8 +12,15 @@ class GameResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+    // Ресурсы - мощный инструмент для трансформации данных перед отправкой в API,
+    // Проблемы которую решают Resources - избыточность данных, безопасность, форматирование и группировка
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+          'id' => $this->id,
+          'title' => $this->title,
+          'genre' => $this->genre,
+          'gamepad'=> (bool) $this->gamepad, // Преобразуем 1/0 в true/false
+        ];
     }
 }
